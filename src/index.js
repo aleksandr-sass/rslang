@@ -16,7 +16,7 @@ fetch(wordURL.href)
     let textMeaningTranslate = data.textMeaningTranslate;
     let textExample = data.textExample;
     let textExampleTranslate = data.textExampleTranslate;
-    wordInfo.innerHTML = `<img src="${imageURL.href}" alt="${word}">
+    wordInfo.innerHTML = `<img src="${imageURL.href}" alt="${word}" class="round">
                           <p>${word} ${transcription}</p>
                           <p>${wordTranslate}</p>
                           <p>${textMeaning}</p>
