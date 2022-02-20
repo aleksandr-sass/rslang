@@ -30,12 +30,12 @@ function getPageHTML(data) {
 
 function getCardHTML(data) {
   return `<img src="${(new URL(data.image, site)).href}" alt="${data.word}" class="round">
-    <p>${data.word} ${data.transcription}</p>
+    <p id="first">${data.word} ${data.transcription}</p>
     <p><img src="./img/audio.png" alt="audio" name="soundButton"></p>
     <p>${data.wordTranslate}</p>
-    <p>${data.textMeaning}</p>
+    <p id="second">${data.textMeaning}</p>
     <p>${data.textMeaningTranslate}</p>
-    <p>${data.textExample}</p>
+    <p id="third">${data.textExample}</p>
     <p>${data.textExampleTranslate}</p>`;
 }
 
@@ -49,10 +49,20 @@ function initializeAudio(data) {
 function listenAudio() {
   let soundButton = this;
   let soundId = getId(soundButton);
+
+  let parentDiv = document.querySelector(`#word-${soundId}`);
+  let first = parentDiv.querySelector("#first");
+  let second = parentDiv.querySelector("#second");
+  let third = parentDiv.querySelector("#third");
+
   soundButton.src = "./img/audioOn.png";
   let soundEffect = prepareAudio(pageData[soundId]);
-  playAudio(soundEffect);
-  soundEffect[2].addEventListener("ended", () => soundButton.src = "./img/audio.png");
+  playAudio(soundEffect, first, second, third);
+  first.classList.add("orange");
+  soundEffect[2].addEventListener("ended", () => {
+    third.classList.remove("orange");
+    soundButton.src = "./img/audio.png";
+  });
 }
 
 function prepareAudio(data) {
@@ -63,10 +73,18 @@ function prepareAudio(data) {
   ];
 }
 
-function playAudio(soundEffect) {
+function playAudio(soundEffect, first, second, third) {
   soundEffect[0].play();
-  soundEffect[0].addEventListener("ended", () => soundEffect[1].play());
-  soundEffect[1].addEventListener("ended", () => soundEffect[2].play());
+  soundEffect[0].addEventListener("ended", () => {
+    first.classList.remove("orange");
+    soundEffect[1].play();
+    second.classList.add("orange");
+  });
+  soundEffect[1].addEventListener("ended", () => {
+    second.classList.remove("orange");
+    soundEffect[2].play();
+    third.classList.add("orange");
+  });
 }
 
 function getId(element) {
