@@ -1,15 +1,23 @@
 let pageInfo = document.querySelector("#page-info");
+let wordBookNav = document.querySelector("#wordBookNav");
 let site = "https://rslang-aleksandr-sass.herokuapp.com/";
 let pageData = [];
 let pageURL = new URL("words?group=0&page=0", site);
 
-fetch(pageURL)
-  .then(response => response.json())
-  .then(data => {
-    pageData = data;
-    pageInfo.innerHTML = getPageHTML(data);
-    initializeAudio(data);
-  });
+/* div#"page-info" JS-code */
+
+fetchURL(pageURL);
+
+function fetchURL(pageURL) {
+  fetch(pageURL)
+    .then(response => response.json())
+    .then(data => {
+      pageData = data;
+      pageInfo.innerHTML = getPageHTML(data);
+      initializeAudio(data);
+      showElement(wordBookNav);
+    });
+}
 
 function getPageHTML(data) {
   let content = '';
@@ -67,4 +75,40 @@ function getId(element) {
     .parentNode
     .id
     .split('-')[1];
+}
+
+function showElement(element) {
+  element.classList.remove("hidden");
+}
+
+/* div#"wordBookNav" JS-code */
+
+wordBookNav.innerHTML = `<p>Next Page</p>
+  <p><img src="../img/arrowRight.png" alt="Next Page" name="nextPage"></p>
+  <p>Previous Page</p>
+  <p><img src="../img/arrowLeft.png" alt="Previous Page" name="previousPage"></p>`;
+
+let nextPage = wordBookNav.querySelector("img[name='nextPage']");
+let previousPage = wordBookNav.querySelector("img[name='previousPage']");
+nextPage.addEventListener("click", showNextPage);
+previousPage.addEventListener("click", showPreviousPage);
+
+function showNextPage() {
+  transition(1);
+}
+
+function showPreviousPage() {
+  transition(-1);
+}
+
+function transition(int) {
+  let group = +(pageURL.searchParams.get("group"));
+  let page = +(pageURL.searchParams.get("page"));
+  let globPage = (180 + group * 30 + page + int) % 180;
+  page = globPage % 30;
+  group = (globPage - page) / 30;
+  pageURL.searchParams.set("group", `${group}`);
+  pageURL.searchParams.set("page", `${page}`);
+  fetchURL(pageURL);
+  pageInfo.scrollIntoView();
 }
