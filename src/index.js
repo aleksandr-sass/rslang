@@ -31,7 +31,7 @@ function getPageHTML(data) {
 function getCardHTML(data) {
   return `<img src="${(new URL(data.image, site)).href}" alt="${data.word}" class="round">
     <p>${data.word} ${data.transcription}</p>
-    <p><img src="../img/audio.png" alt="audio" name="soundButton"></p>
+    <p><img src="./img/audio.png" alt="audio" name="soundButton"></p>
     <p>${data.wordTranslate}</p>
     <p>${data.textMeaning}</p>
     <p>${data.textMeaningTranslate}</p>
@@ -49,10 +49,10 @@ function initializeAudio(data) {
 function listenAudio() {
   let soundButton = this;
   let soundId = getId(soundButton);
-  soundButton.src = "../img/audioOn.png";
+  soundButton.src = "./img/audioOn.png";
   let soundEffect = prepareAudio(pageData[soundId]);
   playAudio(soundEffect);
-  soundEffect[2].addEventListener("ended", () => soundButton.src = "../img/audio.png");
+  soundEffect[2].addEventListener("ended", () => soundButton.src = "./img/audio.png");
 }
 
 function prepareAudio(data) {
@@ -84,9 +84,9 @@ function showElement(element) {
 /* div#"wordBookNav" JS-code */
 
 wordBookNav.innerHTML = `<p>Next Page</p>
-  <p><img src="../img/arrowRight.png" alt="Next Page" name="nextPage"></p>
+  <p><img src="./img/arrowRight.png" alt="Next Page" name="nextPage"></p>
   <p>Previous Page</p>
-  <p><img src="../img/arrowLeft.png" alt="Previous Page" name="previousPage"></p>`;
+  <p><img src="./img/arrowLeft.png" alt="Previous Page" name="previousPage"></p>`;
 
 let nextPage = wordBookNav.querySelector("img[name='nextPage']");
 let previousPage = wordBookNav.querySelector("img[name='previousPage']");
