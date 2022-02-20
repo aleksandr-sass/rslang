@@ -83,9 +83,9 @@ function showElement(element) {
 
 /* div#"wordBookNav" JS-code */
 
-wordBookNav.innerHTML = `<p>Next Page</p>
+wordBookNav.innerHTML = `<p><strong>Next Page</strong></p>
   <p><img src="./img/arrowRight.png" alt="Next Page" name="nextPage"></p>
-  <p>Previous Page</p>
+  <p><strong>Previous Page</strong></p>
   <p><img src="./img/arrowLeft.png" alt="Previous Page" name="previousPage"></p>
   <p id="whereIam">
     You are on <strong>page #${+(pageURL.searchParams.get("page")) + 1}

@@ -5,3 +5,7 @@
 .hidden {
   display: none;
 }
+
+.marginTop {
+  margin-top: 50px;
+}
