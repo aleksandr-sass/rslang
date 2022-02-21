@@ -13,3 +13,26 @@
 .orange {
   color: #ff7f27;
 }
+
+footer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.footer-item {
+  width: 33.33%;
+  text-align: center;
+  padding: 15px;
+}
+
+@media screen and (max-width: 650px) {
+  .github {
+    width: 32px;
+  }
+
+  .rsschooljs {
+    width: 100px;
+  }
+}
