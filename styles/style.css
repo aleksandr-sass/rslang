@@ -1,3 +1,15 @@
+#wrapper {
+  background-color: #fffaef;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 20px;
+}
+
+#wordBookNav {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .round {
   border-radius: 20px;
 }
@@ -16,6 +28,19 @@
 
 .orange {
   color: #ff7f27;
+}
+
+#main {
+  padding-left: 6px;
+}
+
+img[alt="UK-flag"] {
+  position: relative;
+  right: 7px;
+}
+
+#page-info {
+  padding-top: 18px;
 }
 
 footer {
@@ -38,5 +63,11 @@ footer {
 
   .rsschooljs {
     width: 100px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .round {
+    width: 100%;
   }
 }
