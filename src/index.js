@@ -20,8 +20,8 @@ function fetchURL(pageURL) {
 }
 
 function compareObjects(c, d) {
-  let a = c.word;
-  let b = d.word;
+  let a = c.word.toLowerCase();
+  let b = d.word.toLowerCase();
   if (a > b) return 1;
   if (a === b) return 0;
   if (a < b) return -1;
