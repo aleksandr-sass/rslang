@@ -19,7 +19,16 @@ function fetchURL(pageURL) {
     });
 }
 
+function compareObjects(c, d) {
+  let a = c.word;
+  let b = d.word;
+  if (a > b) return 1;
+  if (a === b) return 0;
+  if (a < b) return -1;
+}
+
 function getPageHTML(data) {
+  data.sort(compareObjects);
   let content = '';
   for (let i = 0; i < data.length; i += 1) {
     let wordContent = getCardHTML(data[i]);
