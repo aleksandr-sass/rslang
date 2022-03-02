@@ -1,5 +1,6 @@
 let pageInfo = document.querySelector("#page-info");
 let wordBookNav = document.querySelector("#wordBookNav");
+let selectPage = document.querySelector("#selectPage");
 let site = "https://rslang-aleksandr-sass.herokuapp.com/";
 let pageData = [];
 let pageURL = new URL("words?group=0&page=0", site);
@@ -149,4 +150,23 @@ function transition(int) {
 function updateWhereIam() {
   whereIam.innerHTML = `You are on <strong>page #${+(pageURL.searchParams.get("page")) + 1}
     of chapter #${+(pageURL.searchParams.get("group")) + 1}</strong>`;
+}
+
+/* div#"selectPage" JS-code */
+let pages = '';
+for (let i = 1; i < 31; i += 1) {
+  pages += `<span name="${i}">${i}</span> `;
+}
+selectPage.innerHTML = pages;
+
+for (let i = 1; i < 31; i += 1) {
+  let pageSelector = selectPage.querySelector(`span[name="${i}"]`);
+  pageSelector.addEventListener("click", goToPage);
+}
+
+function goToPage() {
+  let nextPageNumber = +(this.innerText) - 1;
+  let currentPageNumber = +(pageURL.searchParams.get("page"));
+  let requiredTransition = nextPageNumber - currentPageNumber;
+  transition(requiredTransition);
 }

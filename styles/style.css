@@ -43,6 +43,16 @@ img[alt="UK-flag"] {
   padding-top: 18px;
 }
 
+#selectPage {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#selectPage span {
+  font-size: 24px;
+  padding-right: 10px;
+}
+
 footer {
   display: flex;
   align-items: center;
