@@ -155,18 +155,17 @@ function updateWhereIam() {
 /* div#"selectPage" JS-code */
 let pages = '';
 for (let i = 1; i < 31; i += 1) {
-  pages += `<span name="${i}">${i}</span> `;
+  pages += `<span name="${i}">${i}</span>`;
 }
 selectPage.innerHTML = pages;
 
-for (let i = 1; i < 31; i += 1) {
-  let pageSelector = selectPage.querySelector(`span[name="${i}"]`);
-  pageSelector.addEventListener("click", goToPage);
-}
+selectPage.addEventListener("click", goToPage);
 
-function goToPage() {
-  let nextPageNumber = +(this.innerText) - 1;
-  let currentPageNumber = +(pageURL.searchParams.get("page"));
-  let requiredTransition = nextPageNumber - currentPageNumber;
-  transition(requiredTransition);
+function goToPage(evt) {
+  if (evt.target instanceof HTMLSpanElement) {
+    let nextPageNumber = +(evt.target.innerText) - 1;
+    let currentPageNumber = +(pageURL.searchParams.get("page"));
+    let requiredTransition = nextPageNumber - currentPageNumber;
+    transition(requiredTransition);
+  }
 }
