@@ -46,11 +46,17 @@ img[alt="UK-flag"] {
 #selectPage {
   margin-top: 50px;
   margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-#selectPage span {
+#selectPage span {  
   font-size: 24px;
-  padding-right: 10px;
+  padding-left: 17px;
+  padding-right: 17px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 footer {
