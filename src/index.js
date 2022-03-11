@@ -1,6 +1,7 @@
 let pageInfo = document.querySelector("#page-info");
 let wordBookNav = document.querySelector("#wordBookNav");
 let selectPage = document.querySelector("#selectPage");
+let selectChapter = document.querySelector("#selectChapter");
 let site = "https://rslang-aleksandr-sass.herokuapp.com/";
 let pageData = [];
 let pageURL = new URL("words?group=0&page=0", site);
@@ -167,5 +168,29 @@ function goToPage(evt) {
     let currentPageNumber = +(pageURL.searchParams.get("page"));
     let requiredTransition = nextPageNumber - currentPageNumber;
     transition(requiredTransition);
+  }
+}
+
+/* div#"selectChapter" JS-code 
+NOTE: 'chapter' is 'group + 1'*/
+
+let chapters = '';
+for (let i = 1; i < 7; i += 1) {
+  chapters += `<span name="${i}">${i}</span>`;
+}
+
+selectChapter.innerHTML = chapters;
+
+selectChapter.addEventListener("click", goToChapter);
+
+function goToChapter(evt) {
+  if (evt.target instanceof HTMLSpanElement) {
+    const currentPage = +(pageURL.searchParams.get("page"));
+    const currentChapter = +(pageURL.searchParams.get("group"));
+    const currentPageCode = currentChapter * 30 + currentPage;
+    const nextChapter = +(evt.target.innerText) - 1;
+    const nextPageCode = nextChapter * 30;
+    const differencePageCode = nextPageCode - currentPageCode;
+    transition(differencePageCode);
   }
 }
