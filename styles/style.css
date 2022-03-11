@@ -43,7 +43,7 @@ img[alt="UK-flag"] {
   padding-top: 18px;
 }
 
-#selectPage {
+#selectPage, #selectChapter {
   margin-top: 50px;
   margin-bottom: 50px;
   display: flex;
@@ -51,7 +51,7 @@ img[alt="UK-flag"] {
   flex-wrap: wrap;
 }
 
-#selectPage span {  
+#selectPage span, #selectChapter span {  
   font-size: 24px;
   padding-left: 17px;
   padding-right: 17px;
