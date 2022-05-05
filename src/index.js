@@ -41,13 +41,12 @@ function getPageHTML(data) {
 
 function getCardHTML(data) {
   return `<img src="${(new URL(data.image, site)).href}" alt="${data.word}" class="round">
-    <p id="first">${data.word} ${data.transcription}</p>
     <p><img src="./img/audio.png" alt="audio" name="soundButton"></p>
-    <p>${data.wordTranslate}</p>
-    <p id="second">${data.textMeaning}</p>
-    <p>${data.textMeaningTranslate}</p>
-    <p id="third">${data.textExample}</p>
-    <p>${data.textExampleTranslate}</p>`;
+    <dl>
+      <dt id="first">${data.word} ${data.transcription} ${data.wordTranslate}</dt>
+      <dd id="second">${data.textMeaning} - ${data.textMeaningTranslate}</dd>
+      <dd id="third">${data.textExample} - ${data.textExampleTranslate}</dd>
+    </dl>`;
 }
 
 function initializeAudio(data) {
